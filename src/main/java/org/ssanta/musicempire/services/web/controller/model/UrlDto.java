@@ -1,5 +1,7 @@
 package org.ssanta.musicempire.services.web.controller.model;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UrlDto {
+public class UrlDto implements Serializable {
+ 
+	private static final long serialVersionUID = 8817404146128648867L;
+	
 	private String resource;
 	private String id;
 }

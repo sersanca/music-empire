@@ -1,5 +1,6 @@
 package org.ssanta.musicempire.services.web.controller.model;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +15,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ArtistMaterialDto {
+public class ArtistMaterialDto implements Serializable{
+ 
+	private static final long serialVersionUID = 9001262674015582548L;
+	
 	private String name;
 	private String id;
 	private String type;

@@ -19,7 +19,7 @@ public class ProfileAgentTest {
 
 	@Test
 	void getMusicInfo() {
-		String info = client.getArtistProfile(ID);
+		String info = client.getArtistProfile(ID).get();
 		System.out.println(info);
 
 		assertNotNull(info);

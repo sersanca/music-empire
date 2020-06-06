@@ -1,5 +1,7 @@
 package org.ssanta.musicempire.services;
 
+import java.util.Optional;
+
 import org.ssanta.musicempire.services.web.controller.model.ArtistMaterialDto;
 
 /**
@@ -9,5 +11,5 @@ import org.ssanta.musicempire.services.web.controller.model.ArtistMaterialDto;
  */
 public interface IArtistAgent {
 
-	ArtistMaterialDto getArtistMaterialDto(String inMBID);
+	Optional<ArtistMaterialDto> getArtistMaterialDto(String inMBID);
 }

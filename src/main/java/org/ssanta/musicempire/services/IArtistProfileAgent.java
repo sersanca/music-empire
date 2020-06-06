@@ -1,5 +1,7 @@
 package org.ssanta.musicempire.services;
 
+import java.util.Optional;
+
 public interface IArtistProfileAgent {
-	String getArtistProfile(String inId);
+	Optional<String> getArtistProfile(String inId);
 }

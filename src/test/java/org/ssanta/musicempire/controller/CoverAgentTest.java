@@ -18,7 +18,7 @@ public class CoverAgentTest {
 
 	@Test
 	void getMusicInfo() {
-		CoverDto info = client.getCover(ALBUM_ID_1);
+		CoverDto info = client.getCover(ALBUM_ID_1).get();
 
 		System.out.println(info);
 

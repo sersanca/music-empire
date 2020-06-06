@@ -1,5 +1,7 @@
 package org.ssanta.musicempire.services.impl;
 
+import java.util.Optional;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
@@ -7,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.ssanta.musicempire.services.IArtistProfileAgent;
@@ -34,7 +37,7 @@ public class ArtistProfileAgent implements IArtistProfileAgent{
 
 
 	@Override
-	public String getArtistProfile(String inId) {
+	public Optional<String> getArtistProfile(String inId) {
 		
 		log.info("fetching profile for : " + inId);
 		
@@ -51,14 +54,25 @@ public class ArtistProfileAgent implements IArtistProfileAgent{
 
 		HttpEntity<?> entity = new HttpEntity<>(headers);
 
-		HttpEntity<ProfileDto> response = restTemplate.exchange(
-				url, 
-		        HttpMethod.GET, 
-		        entity, 
-		        ProfileDto.class,
-		        inId);
+		try {
+			HttpEntity<ProfileDto> response = restTemplate.exchange(
+					url, 
+			        HttpMethod.GET, 
+			        entity, 
+			        ProfileDto.class,
+			        inId);
+			
+			return Optional.ofNullable(response.getBody().getProfile());
+
+		} catch (RestClientException e) {
+			log.error(e.getMessage());
+			return Optional.empty();
+
+		}
+	
 		
-		return response.getBody().getProfile();
+		
+		
 		
 	}
 

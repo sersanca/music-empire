@@ -16,7 +16,7 @@ public class ArtistAgentTest {
 
 	@Test
 	void getMusicInfo() {
-		ArtistMaterialDto info = client.getArtistMaterialDto(MBID_1);
+		ArtistMaterialDto info = client.getArtistMaterialDto(MBID_1).get();
 		
 		System.out.println(info);
 

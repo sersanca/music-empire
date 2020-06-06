@@ -1,6 +1,6 @@
 package org.ssanta.musicempire.services.web.controller.model;
 
-import java.time.OffsetDateTime;
+import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,9 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AlbumDto {
-	 private String title;
-	 private OffsetDateTime releaseDate; 
+public class AlbumDto implements Serializable {
+ 
+	private static final long serialVersionUID = -2132228385543532428L;
+	
+	private String title;
 	 private String coverLink;
 	 private String id;
 	 

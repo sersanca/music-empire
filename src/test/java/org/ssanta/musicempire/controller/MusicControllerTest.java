@@ -17,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.ssanta.musicempire.services.IMusicService;
 import org.ssanta.musicempire.services.web.controller.MusicController;
+import org.ssanta.musicempire.services.web.controller.NotFoundException;
 import org.ssanta.musicempire.services.web.controller.model.ArtistDto;
 
 
@@ -36,6 +37,17 @@ public class MusicControllerTest {
 
 		mockMvc.perform(get("/api/v1/artist/" + UUID.randomUUID().toString()).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk());
+
+	}
+	
+
+	@Test
+	void getInvalidArtistInfo() throws Exception {
+
+		given(musicService.getArtistInfo(any())).willThrow(NotFoundException.class);
+
+		mockMvc.perform(get("/api/v1/artist/" + UUID.randomUUID().toString()).accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound());
 
 	}
 	  

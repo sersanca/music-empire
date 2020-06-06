@@ -23,9 +23,12 @@ public class MusicController {
 	private final IMusicService musicService;
 
 	@GetMapping("artist/{mbid}")
-	public ResponseEntity<ArtistDto> getBeerById(@PathVariable("mbid") String inMBID) {
+	public ResponseEntity<ArtistDto> getArtistInfo(@PathVariable("mbid") String inMBID) {
 		log.info("Getting request: " + inMBID);
+		 
 		return new ResponseEntity<>(musicService.getArtistInfo(inMBID), HttpStatus.OK);
+		 
+
 	}
 
 }

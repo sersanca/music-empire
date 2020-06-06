@@ -1,14 +1,16 @@
 package org.ssanta.musicempire.services.impl;
 
+import java.util.Optional;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.DefaultResponseErrorHandler;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.ssanta.musicempire.services.IArtistAgent;
@@ -43,12 +45,12 @@ public class ArtistAgent implements IArtistAgent{
 
 
 	@Override
-	public ArtistMaterialDto getArtistMaterialDto(String inMBID) {
+	public Optional<ArtistMaterialDto> getArtistMaterialDto(String inMBID) {
 
 		ArtistMaterialDto material = fetchArtistMaterial(inMBID);
 		log.info("getting music material: " + material);
 
-		return material;
+		return Optional.ofNullable(material);
 
 	}
 	
@@ -67,14 +69,22 @@ public class ArtistAgent implements IArtistAgent{
 
 		HttpEntity<?> entity = new HttpEntity<>(headers);
 
-		HttpEntity<ArtistMaterialDto> response = restTemplate.exchange(
-				url, 
-		        HttpMethod.GET, 
-		        entity, 
-		        ArtistMaterialDto.class,
-		        inMBID);
-		
-		return response.getBody();
+		try {
+			
+			HttpEntity<ArtistMaterialDto> response = restTemplate.exchange(
+					url, 
+			        HttpMethod.GET, 
+			        entity, 
+			        ArtistMaterialDto.class,
+			        inMBID);
+			
+			return response.getBody();
+			
+		}catch (RestClientException e) {
+			log.error(e.getMessage());
+			return null;
+		}
+	
 	}
 
 }
