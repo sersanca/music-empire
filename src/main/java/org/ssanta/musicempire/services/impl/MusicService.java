@@ -33,11 +33,11 @@ public class MusicService implements IMusicService {
 	
 	@Cacheable(cacheNames="artistCache", key="#inMBID")
 	@Override
-	public ArtistDto getArtistInfo(String inMBID) throws NotFoundException {
+	public ArtistDto getArtistInfo(String inMBID)  {
 	   
 		log.info("Requestig artist info for  " + inMBID);
 		ArtistDto artist =null;
-		ArtistMaterialDto artistMaterial = artistAgent.getArtistMaterialDto(inMBID).orElseThrow(NotFoundException::new);
+		ArtistMaterialDto artistMaterial = artistAgent.getArtistMaterialDto(inMBID).orElseThrow(() -> new NotFoundException ("Artist not found in the library with mbid: " + inMBID));
 
 		artist = new ArtistDto();
 		List<AlbumDto> albums = new ArrayList<>();

@@ -2,9 +2,11 @@ package org.ssanta.musicempire.controller;
 
 
  
+import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.UUID;
@@ -33,10 +35,12 @@ public class MusicControllerTest {
 	@Test
 	void getArtistInfo() throws Exception {
 
-		given(musicService.getArtistInfo(any())).willReturn(getRandomArtist());
+		ArtistDto artist = getRandomArtist();
+		given(musicService.getArtistInfo(any())).willReturn(artist);
 
 		mockMvc.perform(get("/api/v1/artist/" + UUID.randomUUID().toString()).accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk());
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.mbid", is(artist.getMBID())));
 
 	}
 	

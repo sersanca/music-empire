@@ -34,7 +34,6 @@ public class ArtistAgent implements IArtistAgent{
     
     public ArtistAgent (RestTemplateBuilder inRestTemplateBuilder) {
     	restTemplate = inRestTemplateBuilder
-    				.errorHandler(new DefaultResponseErrorHandler())
     				.build();
     }
 	 

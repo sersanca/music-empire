@@ -12,8 +12,6 @@ import org.ssanta.musicempire.services.web.controller.model.ArtistDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-
-
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/")
@@ -24,10 +22,10 @@ public class MusicController {
 
 	@GetMapping("artist/{mbid}")
 	public ResponseEntity<ArtistDto> getArtistInfo(@PathVariable("mbid") String inMBID) {
+		
 		log.info("Getting request: " + inMBID);
-		 
+		
 		return new ResponseEntity<>(musicService.getArtistInfo(inMBID), HttpStatus.OK);
-		 
 
 	}
 
