@@ -1,5 +1,5 @@
 
-# ssanta Music Empire
+# Music Empire
 
 Assignment has been created as Spring boot application using Java 11
 
