@@ -17,7 +17,7 @@ The service MusicService injects the above agents to build the response.
 
 To optimize the performance of the API it's being implemetned a cache mechanism the ehCache component. Note the caching setup is very basic. 
 
-Note that the assignment does not require persistence, but the project structure has been prepared for it, whereby the package repositories will contain component to access the database and the domain package will contain the business model mapped to hibernate configs. As I think it is a best practice to decouple this model from the web model used to send/receive data (DTO).
+Note that the assignment does not require persistence, but if so, I would have the project structure organized using a package repositories containing the component to access the database and a domain package with the business model mapped to hibernate configs. As I think it is a good practice to decouple this business model from the web model used to send/receive data (DTO).
 
 # Requirements
 
