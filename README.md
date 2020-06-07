@@ -21,10 +21,10 @@ Note that the assignment does not require persistence, but the project structure
 
 # Requirements
 
-The application uses a library Lombok  which I found very handy and useful, but if you wish to run the application on your develop environment it will require the following steps if you haven't configured already.
+The application uses a library Lombok  which I found very handy and useful, but if you wish to run the application on your develop environment it will require the following steps if you haven't had configured yet.
 
 * Install lombok on your ide (eclipse, intellij,etc) from https://projectlombok.org
-* Enable Annotation processing on the java compiler on the project or environment depending on what IDE your use, this setup is different.
+* Enable Annotation processing on the java compiler on the project or environment depending on which IDE your use, this setup is different.
 
 # Execution
 The API can be run by command :
@@ -33,7 +33,7 @@ The API can be run by command :
 
 # Urls and examples
  
- To test the API has been using JUnit test including in the application and the tool Postman to perform real test on the API.
+ JUnit test are included to test the API. I have used the tool Postman to perform real test on the API.
  
  Url API: http://localhost:8080/api/v1/artist{mbid}
  
